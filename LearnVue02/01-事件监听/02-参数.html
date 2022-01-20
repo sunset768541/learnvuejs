@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    {{message}}
+    <button @click="btnClick">按钮1</button>
+    <!--    不传入参数时，默认传Event对象给函数-->
+    <button @click="btbClick2">2</button>
+    <!--    需要event 同时需要其他参数，用$获取event-->
+    <button @click="btnClick3($event,'这是我传入的')">3</button>
+    <button @click="btnClick4('hhhh')">4</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {message: 'hello', hhhh: 10},
+        methods: {
+            btnClick() {
+                console.log("btnClick的实际")
+            },
+            btbClick2(abc) {
+                console.log("大因测试", abc)
+            },
+            btnClick3(event, aaa) {
+                console.log("打印3", event, aaa)
+            },
+            btnClick4(input) {
+                console.log(input)
+            }
+        }
+    })
+</script>
+</body>
+</html>

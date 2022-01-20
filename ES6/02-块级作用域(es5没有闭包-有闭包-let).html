@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button>按1</button>
+<button>2</button>
+<button>3</button>
+<button>4</button>
+<button>5</button>
+<script>
+    // var btns = document.getElementsByTagName('button');
+    // for (var i = 0; i < btns.length; i++) {
+    //     btns[i].addEventListener('click', function () {
+    //         console.log('第' + i + '个按钮被点击')//每个按钮都打印5 ，因为 i 随着循环被改掉了
+    //     })
+    // }//情况1 ES5 无闭包 错误的
+
+    // var btns = document.getElementsByTagName('button');
+    // for (var i = 0; i < btns.length; i++) {
+    //     (function (i) {//有闭包
+    //         btns[i].addEventListener('click', function () {
+    //             console.log('第' + i + '个按钮被点击')//每个按钮都打印5 ，因为 i 随着循环被改掉了
+    //         })
+    //     })(i)//立即执行
+    // }//情况2 ES5 使用闭包
+    //相当于 执行function(i){ i=0/i=i i是固定的，不随着外面的改而修改
+    //
+    //
+    // }
+
+    const btn = document.getElementsByTagName('button');
+    for (let i = 0; i < btn.length; i++) {
+        btn[i].addEventListener('click', function () {
+            console.log('第' + i + '个按钮被点击')//每个按钮都打印5 ，因为 i 随着循环被改掉了
+        })
+    }//ES6 使用let有作用域
+</script>
+</body>
+</html>

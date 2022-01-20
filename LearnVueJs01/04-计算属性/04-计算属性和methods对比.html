@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{getFullName()}}</h2>
+    <h2>{{getFullName()}}</h2>
+    <h2>{{getFullName()}}</h2>
+    <h2>{{getFullName()}}</h2>
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello',
+            firstName: 'Lebr',
+            lastName: 'jams'
+        },
+        methods: {
+            getFullName: function () {
+                console.log("getFullName 每次都调用")
+                return this.firstName + " " + this.lastName
+            }
+        },
+        computed: {
+            fullName: function () {
+                console.log("fullName 只调用一次，有缓存")
+                return this.firstName + " " + this.lastName
+            }
+        }
+    })
+</script>
+</body>
+</html>
