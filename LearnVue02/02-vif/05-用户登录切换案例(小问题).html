@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+    <span v-if="isUser">
+        <label for="userName">用户账户</label>
+        <!-- 通过给个key解决复用问题-->
+        <input placeholder="输入用户名" type="text" id="userName" key="userName">
+    </span>
+    <span v-else>
+        <label for="userMail">用户邮箱</label>
+        <input placeholder="输入用户邮箱" type="text" id="userMail">
+    </span>
+    <!--    问题，如果已经在userName中输入了内容 点击切换后，输入内容不清空 原因：vue做了一个虚拟dom的处理，放到内存中，出于性能考虑，会复用一些东西-->
+    <button @click="chanege">切换</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {message: 'hello', isUser: true},
+        methods: {
+            chanege() {
+                this.isUser = !this.isUser
+            }
+        }
+    })
+</script>
+</body>
+</html>
