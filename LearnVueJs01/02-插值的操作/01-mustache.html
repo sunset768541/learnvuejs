@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双大括号</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{message}}</h2>
+    <h2>{{message}}</h2>
+<!--    直接显示变量 ，也可以显示简单的表达式 -->
+    <h2>{{message}}</h2>
+    <h2>{{firstName + lastName}}，是大V</h2>
+    <h2>{{firstName + ' '  + lastName}}，是大V</h2>
+    <h2>{{firstName}} {{ lastName}}，是大V</h2>
+    <h2>{{conuter * 2}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello',
+            firstName: 'kobi',
+            lastName: 'brany',
+            conuter:100
+        }
+    })
+</script>
+</body>
+</html>
