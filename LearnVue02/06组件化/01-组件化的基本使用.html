@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--    3.使用组件-->
+    <my-custom-cpn></my-custom-cpn>
+    <my-custom-cpn></my-custom-cpn>
+    <my-custom-cpn></my-custom-cpn>
+    <my-custom-cpn></my-custom-cpn>
+</div>
+<!--4.注意，定义组件必须唯一 app下-->
+<script src="../js/vue.js"></script>
+<script>
+    //ES6 ` 定义字符传 可以换行 `   '这种不可以'
+    //1.创建组件构造器对象
+    const cpnC = Vue.extend({
+        template: `
+        <div>
+            <h2>我是标题</h2>
+            <p>我是内容，呵呵呵</p>
+            <p>我是内容呵呵呵喝啊</p>
+        </div>
+        `
+    })
+    //2.注册组件
+    Vue.component('myCustomCpn', cpnC)
+
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello'
+        }
+    })
+</script>
+</body>
+</html>

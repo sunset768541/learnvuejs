@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <cpn @number1change="number1Change" :number1="num1" :number2="num2"></cpn>
+</div>
+<template id="cpn">
+    <div>
+        <h2>props: {{number1}}</h2>
+        <h2>data:{{dnumber1}}</h2>
+        <!--        想通过input改变父控件中的num1-->
+        <!--        <input type="text" v-model="dnumber1">-->
+        <input type="number" v-bind:value="dnumber1" @input="num1Input">
+
+        <h2>props: {{number2}}</h2>
+        <h2>data: {{dnumber2}}</h2>
+        <input type="text" v-model="dnumber2">
+
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello',
+            num1: 1,
+            num2: 2
+        },
+        methods: {
+            number1Change(value) {
+                console.log(value,typeof value)
+                this.num1 = value
+            }
+        },
+        components: {
+            cpn: {
+                template: '#cpn',
+                props: {//对于子控件是只读的，只能通过父组件修改，不推荐子控件修改这个值
+                    number1:Number,
+                    number2:Number,
+                },
+                data() {
+                    return {//绑定到data中修改
+                        dnumber1: this.number1,
+                        dnumber2: this.number2
+                    }
+                },
+                methods: {
+                    num1Input(event) {
+                        this.dnumber1 = event.target.value
+                        console.log("子发送",this.dnumber1,typeof this.dnumber1)
+                        this.$emit('number1change', this.dnumber1)
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

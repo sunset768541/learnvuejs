@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--1.通过props向子组件传递数据-->
+<!--2.子组件通过事件向父组件发送消息-->
+<div id="app">
+    <cpn v-bind:cmovies="movies" :cmessage="message"></cpn>
+
+</div>
+<template id="cpn">
+    <div>
+        {{cmovies}}
+        <h2>{{cmessage}}</h2>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    const cpn = {
+        template: '#cpn',
+        // props: ['cmovies','cmessage']//写法1
+        // props: {//写法2
+        //     cmovies: Array,
+        //     cmessage: String
+        // }
+        //
+        props: {//写法3
+            cmovies: {
+                type: Array, default() {//如果类型是对象或者数组，这个默认值必须是方法返回
+                    return ['我是以', '大小是', '萨法']
+                }
+            },
+            cmessage: {type: String, default: 'aaaa', required: true}//提供一些默认值 required表示必须传
+        }
+    }
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊',
+            movies: ['海贼王', '海王', '海尔兄弟']
+        },
+        components: {
+            cpn//属性的增强写法
+        }
+    })
+</script>
+</body>
+</html>
