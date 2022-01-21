@@ -15,7 +15,7 @@ const app = new Vue({
             console.log(index)
             this.books[index].count = this.books[index].count + 1
         },
-        subBook(index){
+        subBook(index) {
             this.books[index].count = this.books[index].count - 1
         },
         removeBook(index) {
@@ -24,10 +24,34 @@ const app = new Vue({
     },
     computed: {
         getTotal() {
+            let numbers = [10, 23, 4, 5, 10, 33, 21, 441, 12, 44, 3, 3, 67, 8, 5]
+            let res1 = numbers.filter(function (n) {
+                return n <= 10
+            }).map(function (n) {
+                return n * 2
+            }).reduce(function (pre, n) {
+                return pre + n
+            })
+            console.log(res1)
+
+            let res2 = numbers.filter(n => n <= 10).map(n => n * 2).reduce((pre, n) => pre + n)
+            console.log(res2)
+
+
             let value = 0;
-            for (let i = 0; i < this.books.length; i++) {
-                value += this.books[i].price * this.books[i].count
+            //1.传统的
+            // for (let i = 0; i < this.books.length; i++) {
+            //     value += this.books[i].price * this.books[i].count
+            // }
+            // 2.
+            // for (let i in  this.books){
+            //     value += this.books[i].price * this.books[i].count
+            // }
+            // 3.
+            for (let i of this.books) {
+                value += i.price * i.count
             }
+            //4.
             return value;
         }
     },
