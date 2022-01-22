@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+    <cpn></cpn>
+
+</div>
+<template id="cpn">
+<div>
+    <div>
+        我是子组件
+    </div>
+    <button @click="callParent">
+        访问父组件
+    </button>
+</div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好'
+        },
+        methods: {
+            showMessage() {
+                console.log("我是父组件的方法")
+            }
+        },
+        components: {
+            cpn: {
+                template: '#cpn',
+                methods: {
+                    callParent() {
+                        console.log(this.$parent.message)
+                        this.$parent.showMessage()
+                        //$root可以直接访问根组件
+                    }
+                }
+            }
+        }
+
+    })
+</script>
+</body>
+</html>

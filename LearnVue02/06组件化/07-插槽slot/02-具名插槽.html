@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <cpn>
+<!--        指定替换插槽的名字-->
+        <button slot="center">替换中间的</button>
+        <button slot="left">替换左边</button>
+    </cpn>
+</div>
+<template id="cpn">
+    <div>
+        <h2>我是子组件</h2>
+        <p>我是组件，哈哈哈</p>
+        <!-- 1个插槽不够了 指定改某一个插槽 给插槽命名-->
+        <slot name="left"><span>左边</span></slot>
+        <slot name="center"><span>中间</span></slot>
+        <slot name="right"><span>右边</span></slot>
+    </div>
+</template>
+<script src="../../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好'
+        },
+        components: {
+            cpn: {
+                template: '#cpn'
+            }
+        }
+    })
+</script>
+</body>
+</html>
