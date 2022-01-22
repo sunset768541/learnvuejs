@@ -57,7 +57,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "dist/";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 2);
@@ -224,7 +224,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(7);
+var	fixUrls = __webpack_require__(9);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -562,46 +562,55 @@ function updateLink (link, options, obj) {
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_info__ = __webpack_require__(4);
-const {add} = __webpack_require__(3)//commonjs模块化
+
+
+var _info = __webpack_require__(3);
+
+var _require = __webpack_require__(4),
+    add = _require.add; //commonjs模块化
+
+
 console.log(add(20, 10));
 //es6模块化
-console.log(__WEBPACK_IMPORTED_MODULE_0__js_info__["b" /* name */], __WEBPACK_IMPORTED_MODULE_0__js_info__["a" /* age */])
+console.log(_info.name, _info.age);
 
 //依赖css文件 参考 https://webpack.docschina.org/loaders/css-loader
-__webpack_require__(5)
+__webpack_require__(5);
 //依赖less文件
-__webpack_require__(8)
+__webpack_require__(10);
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+//es6模块化规范
+var name = exports.name = 'why';
+var age = exports.age = 18;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 function add(n1, n2) {
     return n1 + n2;
 }
 //commonjs模块化方法
 module.exports = {
-    add
-}
-
-/***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-//es6模块化规范
-const name = 'why'
-/* harmony export (immutable) */ __webpack_exports__["b"] = name;
-
-const age = 18
-/* harmony export (immutable) */ __webpack_exports__["a"] = age;
-
+    add: add
+};
 
 /***/ }),
 /* 5 */
@@ -658,13 +667,49 @@ if(false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
+// Imports
+var urlEscape = __webpack_require__(7);
+var ___CSS_LOADER_URL___0___ = urlEscape(__webpack_require__(8));
+
 // Module
-exports.push([module.i, "body {\r\n    background-color: red;\r\n}\r\n\r\n/*要打包到bundle中 不是在html中引用*/", ""]);
+exports.push([module.i, "body {\r\n    /*background-color: red;*/\r\n    background: url(" + ___CSS_LOADER_URL___0___ + ");\r\n}\r\n\r\n/*要打包到bundle中 不是在html中引用*/", ""]);
 
 
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function escape(url) {
+  if (typeof url !== 'string') {
+    return url;
+  } // If url is already wrapped in quotes, remove them
+
+
+  if (/^['"].*['"]$/.test(url)) {
+    url = url.slice(1, -1);
+  } // Should url be wrapped?
+  // See https://drafts.csswg.org/css-values-3/#urls
+
+
+  if (/["'() \t\n]/.test(url)) {
+    return '"' + url.replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"';
+  }
+
+  return url;
+};
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/jpeg;base64,bW9kdWxlLmV4cG9ydHMgPSBfX3dlYnBhY2tfcHVibGljX3BhdGhfXyArICJkZDdkNjcxYjExMDk3NDVlZGNlMjI1ZTZiY2YzMWJjNi5qcGciOw=="
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports) {
 
 
@@ -759,11 +804,11 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(9);
+var content = __webpack_require__(11);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -809,7 +854,7 @@ if(false) {
 }
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
