@@ -1,0 +1,5 @@
+body {
+    background-color: red;
+}
+
+/*要打包到bundle中 不是在html中引用*/
