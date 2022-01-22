@@ -5,3 +5,5 @@ console.log(name, age)
 
 //依赖css文件 参考 https://webpack.docschina.org/loaders/css-loader
 require('./css/normal.css')
+//依赖less文件
+require('./css/special.less')

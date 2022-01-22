@@ -8,7 +8,7 @@ const path = require('path') //需要用npm安装这个包 npm init生成package
 module.exports = {
     entry: './src/main.js',
     output: {
-        path:path.resolve(__dirname,'dist'),
+        path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
     },
     module: {
@@ -17,9 +17,18 @@ module.exports = {
                 test: /\.css$/i,
                 //只负责加载，不负责解析到页面 style-loader负责将样式添加到DOM中
                 //使用多个loader 从右边向左边，要先处理css之后style loader才能解析
-                use: ["style-loader","css-loader"]
+                use: ["style-loader", "css-loader"]
 
-            }
+            },
+            {
+                test: /\.less$/i,
+                loader: [
+                    // compiles Less to CSS
+                    'style-loader',
+                    'css-loader',
+                    'less-loader',
+                ],
+            },
         ]
     }
 }
