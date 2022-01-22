@@ -76,6 +76,11 @@ module.exports = {
     },
     plugins:
         [new webpack.BannerPlugin('最终版权归我'),
-            new HtmlWebPackPlugin({template: 'index.html'})]
+            new HtmlWebPackPlugin({template: 'index.html'})],
+    devServer: {
+        contentBase: './dist',
+        inline: true,
+        port:9921
+    }
 
 }
