@@ -6,12 +6,12 @@
 
 const path = require('path') //需要用npm安装这个包 npm init生成package.json
 const webpack = require('webpack')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
 module.exports = {
     entry: './src/main.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath: 'dist/'
     },
     module: {
         rules: [
@@ -75,6 +75,7 @@ module.exports = {
         }
     },
     plugins:
-        [new webpack.BannerPlugin('最终版权归我')]
+        [new webpack.BannerPlugin('最终版权归我'),
+            new HtmlWebPackPlugin({template: 'index.html'})]
 
 }

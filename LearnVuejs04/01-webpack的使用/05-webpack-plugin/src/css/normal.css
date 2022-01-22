@@ -1,0 +1,6 @@
+body {
+    /*background-color: red;*/
+    background: url("../img/test.jpg");
+}
+
+/*要打包到bundle中 不是在html中引用*/
