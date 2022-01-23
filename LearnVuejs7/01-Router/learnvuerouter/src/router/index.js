@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 //2.创建VueRouter对象
 const HomeNews = () => import("../components/HomeNews");
 const HomeMessage = () => import("../components/HomeMessage");
-
+const Profile = () => import('../components/Profile')
 const routes = [
   {
     path: '/home',
@@ -18,9 +18,9 @@ const routes = [
     }, {
       path: 'message',
       component: HomeMessage
-    },{
+    }, {
       path: '',
-      redirect:'news'
+      redirect: 'news'
     }]
   }, {
     path: '/about',
@@ -33,6 +33,10 @@ const routes = [
   {
     path: '/user/:userId',
     component: () => import("../components/User")
+  },
+  {
+    path: '/profile',
+    component: Profile
   }
 ]
 const router = new VueRouter({

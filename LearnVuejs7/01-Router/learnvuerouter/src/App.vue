@@ -15,6 +15,11 @@
     <router-link to="/home">首页</router-link>
     <router-link to="/about">关于</router-link>
     <router-link :to="'/user/'+userId">用户</router-link>
+    <!--    <router-link to="/profile">档案</router-link>-->
+    <router-link :to="{
+      path:'/profile',query:{name:'name',age:13,height:1.22}}">档案
+    </router-link>
+    <button @click="profileClick">档案</button>
 
     <router-view></router-view>
   </div>
@@ -29,6 +34,9 @@ export default {
     },
     aboutClick() {
       this.$router.push('/about')
+    },
+    profileClick() {
+      this.$router.push({path: 'profile', query: {name: 'name', age: 13, height: 1.22}})
     }
   },
   data() {
