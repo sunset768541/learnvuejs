@@ -13,6 +13,7 @@ export default {
   name: "User",
   computed: {
     userId() {
+      //.$route当前活跃的路由
       return this.$route.params.userId
     }
   }
