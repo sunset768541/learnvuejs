@@ -13,10 +13,15 @@ const routes = [
   }, {
     path: '/about',
     component: About
+  },
+  {
+    path: '/',
+    redirect: '/home'
   }
 ]
 const router = new VueRouter({
-  routes
+  routes,
+  mode:"history"
 })
 
 //3
