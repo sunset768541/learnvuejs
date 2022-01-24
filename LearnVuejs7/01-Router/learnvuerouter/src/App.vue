@@ -21,7 +21,10 @@
     </router-link>
     <button @click="profileClick">档案</button>
 
-    <router-view></router-view>
+    <!--    通过include exclude正则来包含和排除某些组件-->
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
