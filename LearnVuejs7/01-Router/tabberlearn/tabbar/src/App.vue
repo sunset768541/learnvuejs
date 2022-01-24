@@ -2,22 +2,22 @@
   <div id="app">
     <router-view></router-view>
     <TabBar>
-      <TabBarItem link="/home">
+      <TabBarItem link="/home" activeColor="blue">
         <img slot="item-icon" src="./assets/img/tabbar/home.svg" alt="">
         <img slot="item-icon-active" src="./assets/img/tabbar/home_active.svg" alt="">
         <div slot="item-text">首页</div>
       </TabBarItem>
-      <TabBarItem link="/category">
+      <TabBarItem link="/category" activeColor="red">
         <img slot="item-icon" src="./assets/img/tabbar/category.svg" alt="">
         <img slot="item-icon-active" src="./assets/img/tabbar/category_active.svg" alt="">
         <div slot="item-text">分类</div>
       </TabBarItem>
-      <TabBarItem link="/shopcart">
+      <TabBarItem link="/shopcart" activeColor="pink">
         <img slot="item-icon" src="./assets/img/tabbar/shopcart.svg" alt="">
         <img slot="item-icon-active" src="./assets/img/tabbar/shopcart_active.svg" alt="">
         <div slot="item-text">购物车</div>
       </TabBarItem>
-      <TabBarItem link="/profile">
+      <TabBarItem link="/profile" activeColor="green">
         <img slot="item-icon" src="./assets/img/tabbar/profile.svg" alt="">
         <img slot="item-icon-active" src="./assets/img/tabbar/profile_active.svg" alt="">
         <div slot="item-text">我的</div>
