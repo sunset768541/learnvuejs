@@ -21,29 +21,39 @@ const routes = [
     }, {
       path: '',
       redirect: 'news'
-    }]
+    }],
+    meta: {title: '首页'}
   }, {
     path: '/about',
-    component: () => import("../components/About")//懒加载写法
+    component: () => import("../components/About"),//懒加载写法
+    meta: {title: '关于'}
   },
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/home',
+
   },
   {
     path: '/user/:userId',
-    component: () => import("../components/User")
+    component: () => import("../components/User"),
+    meta: {title: '用户'}
   },
   {
     path: '/profile',
-    component: Profile
+    component: Profile,
+    meta: {title: '档案'}
   }
 ]
 const router = new VueRouter({
   routes,
   mode: "history"
 })
+router.beforeEach((to, from, next) => {
 
+  // document.title = to.meta.title //首页这样写有问题,有路由的嵌套
+  document.title = to.matched[0].meta.title
+  next()//必须要写的
+})
 //3
 export default router
 
