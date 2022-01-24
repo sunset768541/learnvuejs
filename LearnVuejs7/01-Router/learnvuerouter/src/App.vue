@@ -21,7 +21,7 @@
     </router-link>
     <button @click="profileClick">档案</button>
 
-    <!--    通过include exclude正则来包含和排除某些组件-->
+    <!--    通过include exclude正则来包含和排除某些组件 exclude不能随便加空格 -->
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
