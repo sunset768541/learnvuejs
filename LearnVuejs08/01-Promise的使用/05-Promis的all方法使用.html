@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    Promise.all([new Promise((resolve, reject) => {
+        // $ajax({
+        //     url: 'url',
+        //     success: function (data) {
+        //         resolve(data)
+        //     }
+        // })
+        setTimeout(() => {
+            console.log("网络1请求完成")
+            resolve('我是结果1')
+        }, 2200)
+    }), new Promise((resolve, reject) => {
+        // $ajax({
+        //     url: 'url',
+        //     success: function (data) {
+        //         resolve(data)
+        //     }
+        // })
+        setTimeout(() => {
+            console.log("网络2请求完成")
+            resolve('我是结果23333')
+        }, 5000)
+    })]).then((results => {
+        console.log(results[0]+results[1] )//第一个请求数据
+
+        //第二个请求数据
+    }))
+</script>
+</body>
+</html>
