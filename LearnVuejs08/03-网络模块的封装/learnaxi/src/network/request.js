@@ -28,8 +28,20 @@ export function requestWithPromise(config) {
 }
 
 
-
 export function requestDirectReturn(config) {
+
+  requestInstance.interceptors.request.use(con => {
+    console.log("请求成功：", con);
+    return con
+  }, error => {
+    console.log("请求失败：", error);
+  });
+  requestInstance.interceptors.response.use(conf => {
+    console.log("响应成功: ", conf);
+    return conf
+  }, error => {
+    console.log("响应失败: ", error);
+  });
   return requestInstance(config)
 }
 
