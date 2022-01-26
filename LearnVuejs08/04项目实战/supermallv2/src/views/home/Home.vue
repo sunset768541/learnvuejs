@@ -5,108 +5,7 @@
     <RecommendView :recommends="recommends"></RecommendView>
     <FeatureView></FeatureView>
     <TabControl :titles="['流行','新款','精选']"></TabControl>
-    <ul>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-    </ul>
+    <GoodsList :goods="goods['pop'].list"></GoodsList>
   </div>
 </template>
 
@@ -114,10 +13,11 @@
 import NavBar from "components/common/navbar/NavBar";
 import TabControl from "components/content/tabControl/TabControl";
 
-import {getHomeMultiData} from "network/home";
+import {getHomeMultiData, getHomeGoods} from "network/home";
 import HomeSwiper from "./childComps/HomeSwiper";
 import RecommendView from "./childComps/RecommendView";
 import FeatureView from './childComps/FearureView'
+import GoodsList from "components/content/goods/GoodsList";
 export default {
   name: "Home",
   components: {
@@ -125,28 +25,52 @@ export default {
     TabControl,
     HomeSwiper,
     RecommendView,
-    FeatureView
+    FeatureView,
+    GoodsList
   },
   data() {
     return {
-      result: null,
       banners: [],
-      recommends: []
+      recommends: [],
+      goods: {
+        'pop': {page: 0, list: []},
+        'new': {page: 0, list: []},
+        'sell': {page: 0, list: []}
+      }
     }
   },
   created() {
-    getHomeMultiData().then(res => {
-      this.banners = res.data.data.banner.list
-      this.recommends = res.data.data.recommend.list
-    })
+    this.getHomeMultiData()
+    this.getHomeGoods('pop')
+    this.getHomeGoods('new')
+    this.getHomeGoods('sell')
+  },
+  methods: {
+    getHomeMultiData() {
+      getHomeMultiData().then(res => {
+        this.banners = res.data.data.banner.list
+        this.recommends = res.data.data.recommend.list
+      })
+    },
+    getHomeGoods(type) {
+      const page = this.goods[type].page + 1
+      getHomeGoods(type, page).then(res => {
+          console.log(res)
+          //...解构数组元素一个一个取出来   push 可以传很多个数字
+          this.goods[type].list.push(...res.data.data.list)
+          this.goods[type].page = this.goods[type].page + 1
+        }
+      )
+    }
   }
 }
 </script>
 
 <style scoped>
-#home{
+#home {
   padding-top: 44px;
 }
+
 .home-nav {
   background-color: var(--color-tint);
   color: #e9e9e9;
