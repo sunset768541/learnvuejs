@@ -26,6 +26,7 @@ export default {
   methods: {
     itemClick(index) {
       this.currentIndex = index
+      this.$emit('tabClick', index)
     }
   }
 }
@@ -54,7 +55,7 @@ export default {
   padding-top: 3px;
 }
 
-.tab-control{
+.tab-control {
   position: sticky;
   top: 44px;
 }

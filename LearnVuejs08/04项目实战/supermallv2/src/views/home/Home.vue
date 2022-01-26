@@ -4,8 +4,8 @@
     <HomeSwiper :banners="banners"></HomeSwiper>
     <RecommendView :recommends="recommends"></RecommendView>
     <FeatureView></FeatureView>
-    <TabControl :titles="['流行','新款','精选']"></TabControl>
-    <GoodsList :goods="goods['pop'].list"></GoodsList>
+    <TabControl :titles="['流行','新款','精选']" @tabClick="tabClick"></TabControl>
+    <GoodsList :goods="goods[currentType].list"></GoodsList>
   </div>
 </template>
 
@@ -18,6 +18,7 @@ import HomeSwiper from "./childComps/HomeSwiper";
 import RecommendView from "./childComps/RecommendView";
 import FeatureView from './childComps/FearureView'
 import GoodsList from "components/content/goods/GoodsList";
+
 export default {
   name: "Home",
   components: {
@@ -36,7 +37,8 @@ export default {
         'pop': {page: 0, list: []},
         'new': {page: 0, list: []},
         'sell': {page: 0, list: []}
-      }
+      },
+      currentType: 'pop'
     }
   },
   created() {
@@ -46,6 +48,10 @@ export default {
     this.getHomeGoods('sell')
   },
   methods: {
+    /**
+     * 网络请求
+     */
+
     getHomeMultiData() {
       getHomeMultiData().then(res => {
         this.banners = res.data.data.banner.list
@@ -61,6 +67,20 @@ export default {
           this.goods[type].page = this.goods[type].page + 1
         }
       )
+    },
+    tabClick(index) {
+      console.log(index)
+      switch (index) {
+        case 0:
+          this.currentType = 'pop'
+          break;
+        case 1:
+          this.currentType = 'new'
+          break
+        case 2:
+          this.currentType = 'sell'
+          break
+      }
     }
   }
 }
