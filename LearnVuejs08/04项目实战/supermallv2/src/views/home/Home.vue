@@ -1,20 +1,20 @@
 <template>
   <div>
-    <NavBar class="home-nav">
-      <h4 slot="center">购物街</h4>
-    </NavBar>
-
+    <NavBar class="home-nav"><h4 slot="center">购物街</h4></NavBar>
+    <HomeSwiper :banners="banners"></HomeSwiper>
   </div>
 </template>
 
 <script>
 import NavBar from "components/common/navbar/NavBar";
-import {getHomeMultiData} from "../../network/home";
+import {getHomeMultiData} from "network/home";
+import HomeSwiper from "./childComps/HomeSwiper";
 
 export default {
   name: "Home",
   components: {
-    NavBar
+    NavBar,
+    HomeSwiper
   },
   data() {
     return {
