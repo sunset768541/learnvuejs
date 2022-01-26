@@ -4,6 +4,7 @@
     <HomeSwiper :banners="banners"></HomeSwiper>
     <RecommendView :recommends="recommends"></RecommendView>
     <FeatureView></FeatureView>
+    <TabControl :titles="['流行','新款','精选']"></TabControl>
     <ul>
       <li>列表</li>
       <li>列表</li>
@@ -111,6 +112,8 @@
 
 <script>
 import NavBar from "components/common/navbar/NavBar";
+import TabControl from "components/content/tabControl/TabControl";
+
 import {getHomeMultiData} from "network/home";
 import HomeSwiper from "./childComps/HomeSwiper";
 import RecommendView from "./childComps/RecommendView";
@@ -119,6 +122,7 @@ export default {
   name: "Home",
   components: {
     NavBar,
+    TabControl,
     HomeSwiper,
     RecommendView,
     FeatureView
